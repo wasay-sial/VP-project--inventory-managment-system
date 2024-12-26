@@ -1,0 +1,62 @@
+﻿<Window x:Class="VP_2.Category_Management"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VP_2"
+        mc:Ignorable="d"
+        Title="Category Management" Height="500" Width="800">
+    <Window.Resources>
+        <!-- Define the color palette -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#6F4F1F"/>
+        <!-- Dark brown -->
+        <SolidColorBrush x:Key="SecondaryColor" Color="#8B5E3C"/>
+        <!-- Lighter brown -->
+        <SolidColorBrush x:Key="AccentColor" Color="#D2B48C"/>
+        <!-- Tan color for accents -->
+
+        <!-- Style for buttons -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource AccentColor}">
+        <!-- Title Section -->
+        <TextBlock Text="Category Management" FontSize="24" FontWeight="Bold" Foreground="{StaticResource PrimaryColor}" 
+                   HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0"/>
+
+        <!-- Data Grid for Categories -->
+        <DataGrid x:Name="categoryDataGrid" AutoGenerateColumns="True" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Margin="20,60,20,120" IsReadOnly="True" SelectionMode="Single"/>
+
+        <!-- Buttons and Inputs -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
+            <!-- Add Button -->
+            <Button x:Name="AddCategoryButton" Content="Add" Style="{StaticResource ButtonStyle}" Click="AddCategoryButton_Click"/>
+
+            <!-- Update Button -->
+            <Button x:Name="UpdateCategoryButton" Content="Update" Style="{StaticResource ButtonStyle}" Click="UpdateCategoryButton_Click"/>
+
+            <!-- Delete Button -->
+            <Button x:Name="DeleteCategoryButton" Content="Delete" Style="{StaticResource ButtonStyle}" Click="DeleteCategoryButton_Click"/>
+
+            <!-- Search Section -->
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+               
+                <Button x:Name="SearchButton" Content="Search" Style="{StaticResource ButtonStyle}" Width="120" Click="SearchButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,125 @@
+﻿<Window x:Class="VP_2.PlaceOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Place Order" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Define the color palette -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#6F4F1F"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#8B5E3C"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#D2B48C"/>
+
+        <!-- Style for buttons -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" BlurRadius="10" Direction="270" ShadowDepth="3"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="15" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style for the Window -->
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Grid Layout -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Section -->
+        <Border Background="{StaticResource PrimaryColor}" Padding="20" HorizontalAlignment="Stretch">
+            <TextBlock Text="Place Your Order" Foreground="White" FontSize="36" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <!-- Main Content Section -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="199*"/>
+                <ColumnDefinition Width="181*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Product List Section -->
+            <StackPanel Grid.Column="0" Margin="10,10,10,10">
+                <TextBlock Text="Available Products" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                <DataGrid x:Name="ProductDataGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" Height="300" Width="374">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ProductId}" Width="50"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding ProductName}" Width="150"/>
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="100"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="100"/>
+                        <DataGridTextColumn Header="Category ID" Binding="{Binding CategoryId}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <!-- Order Form Section -->
+            <StackPanel Grid.Column="1" Margin="20,0,0,20">
+                <TextBlock Text="Order Details" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                <!-- Order ID Field -->
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="Order ID:" Width="100" VerticalAlignment="Center"/>
+                    <TextBox x:Name="OrderIdTextBox" Width="200"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="Product ID:" Width="100" VerticalAlignment="Center"/>
+                    <TextBox x:Name="ProductIdTextBox" Width="200"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="Product Name:" Width="100" VerticalAlignment="Center"/>
+                    <TextBox x:Name="ProductNameTextBox" Width="200"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="Address:" Width="100" VerticalAlignment="Center"/>
+                    <TextBox x:Name="AddressTextBox" Width="200"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,5">
+                    <TextBlock Text="Email:" Width="100" VerticalAlignment="Center"/>
+                    <TextBox x:Name="EmailTextBox" Width="200"/>
+                </StackPanel>
+
+                <Button x:Name="SubmitOrderButton" Content="Submit Order" Style="{StaticResource ButtonStyle}" Click="SubmitOrderButton_Click"/>
+                <Button x:Name="CancelButton" Content="Cancel" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

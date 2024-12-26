@@ -1,0 +1,13 @@
+﻿<Page x:Class="VP_2.UserListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="User List">
+    <Grid Background="#D2B48C">
+        <DataGrid x:Name="UserDataGrid" AutoGenerateColumns="True"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Margin="10" IsReadOnly="True"
+                  AlternationCount="2"
+                  AlternatingRowBackground="#F5F5F5"
+                  Background="White"/>
+    </Grid>
+</Page>

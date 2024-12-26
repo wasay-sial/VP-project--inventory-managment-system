@@ -1,0 +1,114 @@
+﻿<Window x:Class="VP_2.User_login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VP_2"
+        mc:Ignorable="d"
+        Title="Login" Height="350" Width="400"
+        Background="#FF3E2723" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True">
+    <Window.Resources>
+        <!-- Color Palette -->
+        <SolidColorBrush x:Key="PrimaryColor" Color="#6F4F1F"/>
+        <SolidColorBrush x:Key="SecondaryColor" Color="#8B5E3C"/>
+        <SolidColorBrush x:Key="AccentColor" Color="#D2B48C"/>
+        <SolidColorBrush x:Key="HoverColor" Color="#C8A57A"/>
+
+        <!-- Shadow Effect -->
+        <DropShadowEffect x:Key="ShadowEffect" ShadowDepth="5" BlurRadius="10" Color="Black"/>
+
+        <!-- Button Style with Rounded Corners and Hover Effect -->
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Effect" Value="{StaticResource ShadowEffect}"/>
+
+            <!-- Rounded Corners in Button ControlTemplate -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="15"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <!-- Button Hover Effect -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource HoverColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Window Title Section Style -->
+        <Style TargetType="TextBlock" x:Key="TitleTextStyle">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Define Rows for Layout -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Title Section -->
+            <RowDefinition Height="*"/>
+            <!-- Content Area (takes available space) -->
+            <RowDefinition Height="Auto"/>
+            <!-- Buttons area (auto size) -->
+        </Grid.RowDefinitions>
+
+        <!-- Title Section Inside the Login Form -->
+        <TextBlock Text="Login" Style="{StaticResource TitleTextStyle}" Grid.Row="0" Margin="0,15,0,15" />
+
+        <!-- Login Form with Rounded Corners -->
+        <Border Background="{StaticResource SecondaryColor}" CornerRadius="15" Padding="20" Margin="30,20,30,20" Effect="{StaticResource ShadowEffect}" Grid.Row="1">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Username Field -->
+                <StackPanel Margin="0,5,0,5">
+                    <TextBlock Text="Username" Foreground="#E8D0A9" FontSize="12" />
+                    <TextBox x:Name="usernameTextBox" Width="220" Height="30" FontSize="12" 
+                             Background="#6A3E29" Foreground="#FFF4F4F9" BorderBrush="#A5734D" 
+                             Padding="5" BorderThickness="1"/>
+                </StackPanel>
+
+                <!-- Password Field -->
+                <StackPanel Margin="0,5,0,5">
+                    <TextBlock Text="Password" Foreground="#E8D0A9" FontSize="12" />
+                    <PasswordBox x:Name="passwordBox" Width="220" Height="30" FontSize="12"
+                                 Background="#6A3E29" Foreground="#FFF4F4F9" BorderBrush="#A5734D"
+                                 Padding="5" BorderThickness="1"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Buttons at the Bottom -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,20" Grid.Row="2">
+            <!-- Login Button -->
+            <Button Content="Login" Style="{StaticResource ButtonStyle}" Click="LoginButton_Click" Width="153" />
+
+            <!-- Close Button -->
+            <Button Content="Close" Style="{StaticResource ButtonStyle}" Click="CloseButton_Click" Width="165"/>
+        </StackPanel>
+    </Grid>
+</Window>
